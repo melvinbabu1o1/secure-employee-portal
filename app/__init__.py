@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session, redirect, url_for
 from config import Config
 from app.routes.auth_routes import auth_bp
 from app.routes.employee_routes import employee_bp
@@ -12,6 +12,8 @@ def create_app():
 
     @app.route('/')
     def home():
-        return "Secure Employee Portal — setup successful."
+        if 'user_id' in session:
+            return redirect(url_for('employee.dashboard'))
+        return redirect(url_for('auth.login'))
 
     return app

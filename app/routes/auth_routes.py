@@ -1,11 +1,14 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify, session, render_template
 from app.db import get_db_connection
 from app.validators import validate_username, validate_email
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/register', methods=['POST'])
+@auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+
     username = request.form.get('username', '')
     email = request.form.get('email', '')
     password = request.form.get('password', '')
@@ -41,8 +44,11 @@ def register():
 from app.auth import hash_password, verify_password, is_account_locked, record_failed_login, reset_login_attempts
 from app.logging_config import security_logger
 
-@auth_bp.route('/login', methods=['POST'])
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+
     username = request.form.get('username', '')
     password = request.form.get('password', '')
 

@@ -1,6 +1,6 @@
 import csv
 import os
-from flask import Blueprint, request, jsonify, session, send_file
+from flask import Blueprint, request, jsonify, session, send_file, render_template, redirect, url_for
 from app.db import get_db_connection
 from app.decorators import login_required
 from app.validators import validate_age, validate_salary, validate_phone, validate_department, validate_export_filename
@@ -102,3 +102,9 @@ def download_export(archive_name):
         return jsonify({"error": "File not found."}), 404
 
     return send_file(archive_path, as_attachment=True)
+
+@employee_bp.route('/dashboard', methods=['GET'])
+def dashboard():
+    if 'user_id' not in session:
+        return redirect(url_for('auth.login'))
+    return render_template('dashboard.html')
