@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h1>Log In</h1>
+<form id="loginForm">
+  <label>Username</label>
+  <input type="text" name="username" required>
+  <label>Password</label>
+  <input type="password" name="password" required>
+  <button type="submit">Log In</button>
+</form>
+<p id="message"></p>
+<p>No account? <a href="/register">Register</a></p>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const res = await fetch('/login', { method: 'POST', body: new FormData(this) });
+  const data = await res.json();
+  const msg = document.getElementById('message');
+  if (res.ok) {
+    msg.textContent = data.message + " Redirecting...";
+    msg.className = "success";
+    setTimeout(() => window.location.href = '/dashboard', 800);
+  } else {
+    msg.textContent = data.error;
+    msg.className = "error";
+  }
+});
+</script>
+{% endblock %}
