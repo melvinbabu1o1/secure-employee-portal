@@ -1,0 +1,28 @@
+2026-07-12 12:46:10,749 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 12:46:19,212 | INFO | Successful login: user_id=1
+2026-07-12 12:47:47,699 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 12:47:49,431 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 12:47:50,219 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 12:47:51,067 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 12:47:53,650 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 12:48:00,337 | WARNING | Login blocked: account locked for user_id=1
+2026-07-12 13:12:28,820 | INFO | Successful login: user_id=1
+2026-07-12 13:12:37,348 | INFO | Employee record created by user_id=1
+2026-07-12 14:49:32,350 | WARNING | Failed login: unknown username '' OR '1'='1'
+2026-07-12 14:49:32,355 | WARNING | Failed login: unknown username 'admin'--'
+2026-07-12 14:49:32,358 | WARNING | Failed login: unknown username '' UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL--'
+2026-07-12 14:49:32,363 | WARNING | Failed login: unknown username ''; DROP TABLE users;--'
+2026-07-12 14:50:31,309 | INFO | Successful login: user_id=1
+2026-07-12 22:23:01,253 | INFO | Successful login: user_id=1
+2026-07-12 22:34:47,989 | INFO | Successful login: user_id=1
+2026-07-12 22:34:48,012 | INFO | Employee record created by user_id=1
+2026-07-12 22:37:23,105 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 22:37:23,630 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 22:37:24,155 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 22:37:24,659 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 22:37:25,164 | WARNING | Failed login: wrong password for user_id=1
+2026-07-12 22:37:25,469 | WARNING | Login blocked: account locked for user_id=1
+2026-07-12 23:09:07,998 | INFO | Successful login: user_id=1
+2026-07-12 23:09:14,459 | INFO | Employee export created by user_id=1: exports/my_report_2026.tar.gz
+2026-07-12 23:10:59,695 | INFO | Successful login: user_id=1
+2026-07-12 23:10:59,735 | INFO | Employee export created by user_id=1: exports/legit_export_test.tar.gz
