@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block containerclass %}wide{% endblock %}
+{% block content %}
+<div class="topbar">
+  <h1>Employees</h1>
+  <button class="secondary" id="logoutBtn">Log out</button>
+</div>
+
+<form id="addForm">
+  <label>Full Name</label>
+  <input type="text" name="full_name" required>
+  <label>Age</label>
+  <input type="number" name="age" required>
+  <label>Salary</label>
+  <input type="number" name="salary" step="0.01" required>
+  <label>Phone</label>
+  <input type="text" name="phone" required>
+  <label>Department</label>
+  <select name="department" required>
+    <option value="HR">HR</option>
+    <option value="Engineering">Engineering</option>
+    <option value="Sales">Sales</option>
+    <option value="Finance">Finance</option>
+    <option value="Operations">Operations</option>
+  </select>
+  <button type="submit">Add Employee</button>
+</form>
+<p id="message"></p>
+
+<table id="empTable">
+  <thead>
+    <tr><th>ID</th><th>Name</th><th>Age</th><th>Salary</th><th>Phone</th><th>Dept</th></tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<form id="exportForm" style="margin-top:30px;">
+  <label>Export archive name</label>
+  <input type="text" name="archive_name" placeholder="e.g. my_report_2026" required>
+  <button type="submit" class="secondary">Export as .tar.gz</button>
+</form>
+<p id="exportMessage"></p>
+
+<script>
+async function loadEmployees() {
+  const res = await fetch('/employees');
+  const rows = await res.json();
+  const tbody = document.querySelector('#empTable tbody');
+  tbody.innerHTML = '';
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.id}</td><td>${r.full_name}</td><td>${r.age}</td><td>${r.salary}</td><td>${r.phone_number}</td><td>${r.department}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+loadEmployees();
+
+document.getElementById('addForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const res = await fetch('/employee', { method: 'POST', body: new FormData(this) });
+  const data = await res.json();
+  const msg = document.getElementById('message');
+  msg.textContent = data.message || data.error;
+  msg.className = res.ok ? "success" : "error";
+  if (res.ok) { this.reset(); loadEmployees(); }
+});
+
+document.getElementById('exportForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const res = await fetch('/employees/export', { method: 'POST', body: new FormData(this) });
+  const data = await res.json();
+  const msg = document.getElementById('exportMessage');
+  if (res.ok) {
+    msg.innerHTML = `Export created: <a href="/employees/download/${new FormData(this.closest?this:document.getElementById('exportForm')).get('archive_name')}">Download</a>`;
+    msg.className = "success";
+  } else {
+    msg.textContent = data.error;
+    msg.className = "error";
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', async function() {
+  await fetch('/logout', { method: 'POST' });
+  window.location.href = '/login';
+});
+</script>
+{% endblock %}
