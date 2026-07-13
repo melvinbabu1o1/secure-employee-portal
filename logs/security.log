@@ -26,3 +26,18 @@
 2026-07-12 23:09:14,459 | INFO | Employee export created by user_id=1: exports/my_report_2026.tar.gz
 2026-07-12 23:10:59,695 | INFO | Successful login: user_id=1
 2026-07-12 23:10:59,735 | INFO | Employee export created by user_id=1: exports/legit_export_test.tar.gz
+2026-07-13 00:08:01,331 | WARNING | Failed login: wrong password for user_id=1
+2026-07-13 00:08:13,658 | WARNING | Failed login: wrong password for user_id=1
+2026-07-13 00:14:06,864 | INFO | Successful login: user_id=3
+2026-07-13 00:16:22,777 | WARNING | Failed login: unknown username '' OR '1'='1'
+2026-07-13 00:17:22,186 | INFO | Successful login: user_id=3
+2026-07-13 00:18:04,302 | INFO | Employee record created by user_id=3
+2026-07-13 22:17:31,808 | WARNING | Failed login: wrong password for user_id=1
+2026-07-13 22:17:32,322 | WARNING | Failed login: wrong password for user_id=1
+2026-07-13 22:17:32,852 | WARNING | Failed login: wrong password for user_id=1
+2026-07-13 22:17:33,156 | WARNING | Login blocked: account locked for user_id=1
+2026-07-13 22:17:55,847 | WARNING | Login blocked: account locked for user_id=1
+2026-07-13 22:22:17,462 | WARNING | Failed login: unknown username '' OR '1'='1'
+2026-07-13 22:22:17,465 | WARNING | Failed login: unknown username 'admin'--'
+2026-07-13 22:22:17,468 | WARNING | Failed login: unknown username '' UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL--'
+2026-07-13 22:22:17,471 | WARNING | Failed login: unknown username ''; DROP TABLE users;--'
